@@ -1,0 +1,62 @@
+/* Main */
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Stops scrollbars during the loading */
+}
+
+/* Loaders*/
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background-color: #000;
+}
+
+#earth {
+    width: 500px;
+}
+
+/* Transition Animation */
+.exit-animation {
+    animation: zoomAndSlide 2s forwards; /* animation duration */
+}
+
+@keyframes zoomAndSlide {
+    0% {
+        transform: scale(1) translateX(0);
+        opacity: 1;
+    }
+    40% {
+        transform: scale(2.5); /* Zooming in first */
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3.5) translateX(150%); /* Sliding right off screen */
+        opacity: 0;
+    }
+}
+
+/* Opens the website */
+.hidden {
+    display: none;
+}
+
+header {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 80px;
+    margin: 0;
+}
