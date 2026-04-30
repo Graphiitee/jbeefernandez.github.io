@@ -1,0 +1,112 @@
+:root {
+    --white: #ffffff;
+    --font-heading: 'Jost', sans-serif;
+    --font-data: 'Inter', sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #000;
+    color: var(--white);
+    overflow: hidden;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('assets/loadingbg.gif') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+    animation: pageIntro 2.5s ease-out forwards;
+    transition: opacity 1.5s ease-in-out, visibility 1.5s;
+}
+
+@keyframes pageIntro {
+    0% { opacity: 0; filter: blur(10px); }
+    100% { opacity: 1; filter: blur(0px); }
+}
+
+.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hud-center {
+    text-align: center;
+    margin-top: 38vh;
+}
+
+.main-title {
+    font-family: var(--font-heading);
+    font-size: 2rem; 
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    margin: 0;
+}
+
+.distance-text {
+    font-family: var(--font-data);
+    font-size: 1rem;
+    margin-top: 15px;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.status-subtext {
+    font-family: var(--font-data);
+    font-size: 0.7rem;
+    margin-top: 40px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.corner-video {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 120px;
+    height: auto;
+    pointer-events: none; /* Prevents interaction/pausing */
+    z-index: 100;
+    opacity: 0.9;
+}
+
+.hud-footer {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+.fact-header {
+    font-family: var(--font-heading);
+    font-size: 0.8rem; 
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.fact-container {
+    min-height: 80px; 
+    padding: 0 20px;
+}
+
+.fact-content {
+    font-family: var(--font-data);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}

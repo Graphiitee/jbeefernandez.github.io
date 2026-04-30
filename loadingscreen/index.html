@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigPlanetarium | Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loading-screen" class="loading-overlay">
+        
+        <video id="vid" autoplay loop muted playsinline class="corner-video">
+            <source src="assets/vid.mp4" type="video/mp4">
+        </video>
+
+        <main class="hud-center">
+            <h1 class="main-title">Looking through the telescope</h1>
+            <div id="distance-display" class="distance-text" aria-live="polite">
+                0 KM
+            </div>
+            <p id="status-text" class="status-subtext">GETTING READY...</p>
+        </main>
+
+        <footer class="hud-footer">
+            <h2 class="fact-header">Did you know?</h2>
+            <div class="fact-container">
+                <p id="fun-fact" class="fact-content" aria-live="polite">Space is waiting for you!</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
