@@ -1,6 +1,4 @@
-// Reference for screen boundaries: https://www.w3schools.com/jsref/prop_win_innerheight.asp
-// https://www.w3schools.com/cssref/css3_pr_backdrop-filter.php
-
+// Draggable logic with boundaries: https://www.w3schools.com/howto/howto_js_draggable.asp
 
 const box = document.getElementById("signin-box");
 const handle = document.getElementById("handle");
@@ -10,6 +8,7 @@ let offsetX, offsetY;
 
 handle.addEventListener("mousedown", (e) => {
     isDragging = true;
+    // Find where the mouse is relative to the box
     offsetX = e.clientX - box.offsetLeft;
     offsetY = e.clientY - box.offsetTop;
     handle.style.cursor = "grabbing";
@@ -17,27 +16,21 @@ handle.addEventListener("mousedown", (e) => {
 
 document.addEventListener("mousemove", (e) => {
     if (isDragging) {
-        // Calculate the new position
         let newX = e.clientX - offsetX;
         let newY = e.clientY - offsetY;
 
-        // Get the screen limits (Window width and height)
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
+        // Screen and Box dimensions
+        const screenW = window.innerWidth;
+        const screenH = window.innerHeight;
+        const boxW = box.offsetWidth;
+        const boxH = box.offsetHeight;
 
-        // Get the box size so we know where the right and bottom edges are
-        const boxWidth = box.offsetWidth;
-        const boxHeight = box.offsetHeight;
-        
-        // Left & Right walls
-        if (newX < 0) newX = 0;
-        if (newX + boxWidth > screenWidth) newX = screenWidth - boxWidth;
+        // STOP box from going off screen
+        if (newX < 0) newX = 0; // Left wall
+        if (newY < 0) newY = 0; // Top wall
+        if (newX + boxW > screenW) newX = screenW - boxW; // Right wall
+        if (newY + boxH > screenH) newY = screenH - boxH; // Bottom wall
 
-        // Top & Bottom walls
-        if (newY < 0) newY = 0;
-        if (newY + boxHeight > screenHeight) newY = screenHeight - boxHeight;
-
-        // Apply the safe coordinates
         box.style.left = newX + "px";
         box.style.top = newY + "px";
         box.style.margin = "0"; 

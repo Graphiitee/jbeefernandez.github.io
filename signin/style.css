@@ -1,13 +1,17 @@
+/* Color and Variable setup */
 :root {
     --white: #ffffff;
-    --glass: rgba(255, 255, 255, 0.05);
-    --border: rgba(255, 255, 255, 0.15);
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.1);
 }
 
+/* https://www.w3schools.com/css/css_background.asp */
 body, html {
     margin: 0;
     height: 100%;
-    background-color: #000; /* Pure black background */
+    background: url('bg/1.gif') no-repeat center center fixed; 
+    background-size: cover;
+    background-color: #000; 
     color: var(--white);
     font-family: 'Inter', sans-serif;
     display: flex;
@@ -17,27 +21,29 @@ body, html {
     cursor: url('assets/cursor.webp'), auto;
 }
 
-/* The Holographic Box */
 .hologram-card {
     position: absolute;
     width: 350px;
     background: var(--glass);
-    backdrop-filter: blur(15px); /* Frosted effect */
+    /* https://www.w3schools.com/cssref/css3_pr_backdrop-filter.php */
+    backdrop-filter: blur(20px) saturate(180%); 
     border: 1px solid var(--border);
-    border-radius: 25px; /* Rounded like 2.jpg */
+    border-radius: 25px;
     padding-bottom: 30px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
     
-    /* Intro Flicker Animation */
-    animation: flickerOn 1.2s ease-out forwards;
+    /* the licker Animation */
+    animation: realFlicker 1.5s ease-out forwards;
 }
 
-@keyframes flickerOn {
-    0% { opacity: 0; transform: scale(0.9) translateY(20px); filter: brightness(3); }
-    10% { opacity: 0.1; }
-    15% { opacity: 0.8; }
-    20% { opacity: 0.2; }
-    25% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(1); }
+/* flicker effect */
+@keyframes realFlicker {
+    0% { opacity: 0; filter: brightness(5) blur(10px); transform: scale(0.8); }
+    5% { opacity: 0.8; filter: brightness(2) blur(2px); }
+    10% { opacity: 0.2; filter: brightness(4) blur(5px); }
+    15% { opacity: 1; filter: brightness(1.5) blur(0px); }
+    20% { opacity: 0.3; filter: brightness(3); }
+    30% { opacity: 1; filter: brightness(1); transform: scale(1); }
 }
 
 .drag-handle {
@@ -47,13 +53,10 @@ body, html {
     font-size: 0.6rem;
     letter-spacing: 4px;
     opacity: 0.4;
-    cursor: grab; /* Hand icon for dragging */
+    cursor: grab;
 }
 
-.content {
-    padding: 0 40px;
-    text-align: center;
-}
+.content { padding: 0 40px; text-align: center; }
 
 .main-title {
     font-family: 'Jost', sans-serif;
@@ -63,11 +66,7 @@ body, html {
     margin: 10px 0;
 }
 
-.subtitle {
-    font-size: 0.8rem;
-    opacity: 0.6;
-    margin-bottom: 30px;
-}
+.subtitle { font-size: 0.8rem; opacity: 0.6; margin-bottom: 30px; }
 
 .input-field {
     width: 100%;
@@ -78,6 +77,7 @@ body, html {
     margin-bottom: 15px;
     color: white;
     box-sizing: border-box;
+    outline: none;
 }
 
 .btn-primary {
@@ -109,11 +109,7 @@ body, html {
 
 .btn-google img { width: 15px; }
 
-.divider {
-    margin: 20px 0;
-    font-size: 0.7rem;
-    opacity: 0.3;
-}
+.divider { margin: 20px 0; font-size: 0.7rem; opacity: 0.3; }
 
 .guest-link {
     display: block;
