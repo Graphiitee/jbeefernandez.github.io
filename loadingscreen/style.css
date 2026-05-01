@@ -11,7 +11,6 @@ body, html {
     background-color: #000;
     color: var(--white);
     overflow: hidden;
-    /* Custom Cursor Implementation */
     cursor: url('cursor.webp'), auto; 
 }
 
@@ -37,15 +36,13 @@ body, html {
     100% { opacity: 1; filter: blur(0px); }
 }
 
+/* Smooth transition class */
 .fade-out {
     opacity: 0;
     visibility: hidden;
 }
 
-.hud-center {
-    text-align: center;
-    margin-top: 38vh;
-}
+.hud-center { text-align: center; margin-top: 38vh; }
 
 .main-title {
     font-family: var(--font-heading);
@@ -53,14 +50,12 @@ body, html {
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 10px;
-    margin: 0;
 }
 
 .distance-text {
     font-family: var(--font-data);
     font-size: 1rem;
     margin-top: 15px;
-    font-weight: 300;
     letter-spacing: 3px;
 }
 
@@ -78,31 +73,18 @@ body, html {
     bottom: 30px;
     right: 30px;
     width: 120px;
-    height: auto;
-    pointer-events: none; 
-    z-index: 100;
     opacity: 0.9;
+    pointer-events: none;
 }
 
-.hud-footer {
-    position: absolute;
-    bottom: 40px;
-    width: 100%;
-    text-align: center;
-}
+.hud-footer { position: absolute; bottom: 40px; width: 100%; text-align: center; }
 
 .fact-header {
     font-family: var(--font-heading);
     font-size: 0.8rem; 
     letter-spacing: 8px;
     text-transform: uppercase;
-    margin-bottom: 15px;
     opacity: 0.5;
-}
-
-.fact-container {
-    min-height: 80px; 
-    padding: 0 20px;
 }
 
 .fact-content {
