@@ -29,6 +29,8 @@ body, html {
     z-index: 9999;
     animation: pageIntro 2.5s ease-out forwards;
     transition: opacity 1.5s ease-in-out, visibility 1.5s;
+    /* Block all clicks during loading */
+    pointer-events: none;
 }
 
 @keyframes pageIntro {
@@ -36,7 +38,6 @@ body, html {
     100% { opacity: 1; filter: blur(0px); }
 }
 
-/* Smooth transition class */
 .fade-out {
     opacity: 0;
     visibility: hidden;
