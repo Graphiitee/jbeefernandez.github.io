@@ -20,10 +20,3 @@ document.addEventListener("mousemove", (e) => {
 });
 
 document.addEventListener("mouseup", () => { isDragging = false; handle.style.cursor = "grab"; });
-
-function enterSite() {
-    window.parent.document.getElementById('siteContent').src = "../home/index.html";
-}
-
-document.querySelector('.btn-primary').addEventListener('click', enterSite);
-document.querySelector('.guest-link').addEventListener('click', enterSite);
