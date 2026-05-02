@@ -1,3 +1,4 @@
+/* SETTINGS: Global styles and fonts */
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@200;400;600&display=swap');
 
 * {
@@ -10,9 +11,10 @@ body {
     background-color: #000;
     font-family: 'Barlow', sans-serif;
     color: #fff;
-    min-height: 100vh;
+    overflow-x: hidden;
 }
 
+/* NAVBAR: Based on your previous logic */
 .navbar {
     position: fixed;
     top: 0;
@@ -40,10 +42,7 @@ body {
     align-items: center;
 }
 
-.logo img {
-    height: 30px;
-    width: auto;
-}
+.logo img { height: 30px; width: auto; }
 
 .nav-links {
     display: flex;
@@ -78,19 +77,90 @@ body {
     transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+/* VIEW: The main hero layout */
+.view {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10%;
+    position: relative;
+    background: radial-gradient(circle at 50% 50%, #111 0%, #000 80%);
+    transition: all 1.2s ease-out;
 }
 
-/* Intro Animation */
+.bg-num {
+    position: absolute;
+    left: 5%;
+    bottom: 8%;
+    font-family: 'Jost', sans-serif;
+    font-size: 9rem;
+    opacity: 0.05;
+    font-weight: 800;
+}
+
+.tag {
+    font-size: 0.7rem;
+    letter-spacing: 6px;
+    opacity: 0.5;
+    margin-bottom: 5px;
+}
+
+.main {
+    font-family: 'Jost', sans-serif;
+    font-size: 3.5rem;
+    line-height: 0.85;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.huge {
+    font-size: 11rem;
+    font-weight: 800;
+    letter-spacing: -6px;
+}
+
+.info {
+    max-width: 400px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0.6;
+    margin-top: 25px;
+}
+
+.go {
+    margin-top: 35px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 14px 35px;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 3px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: 0.4s;
+}
+
+.go:hover { background: #fff; color: #000; }
+
+/* ASTRO: Floating astronaut */
+.astro {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 650px;
+    z-index: 10;
+    cursor: grab;
+}
+
+/* Animations */
+.hide { opacity: 0; filter: blur(15px); transform: scale(0.95); }
+.show { opacity: 1; filter: blur(0px); transform: scale(1); }
+
 @keyframes fadeInDown {
-    from { 
-        opacity: 0; 
-        transform: translateY(-15px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
