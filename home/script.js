@@ -1,52 +1,48 @@
-// Navigation scroll effect
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+const bar = document.querySelector('.bar');
+const el = document.getElementById('astro');
+const hero = document.querySelector('.hero');
+
+window.onscroll = () => {
+    window.scrollY > 50 ? bar.classList.add('scroll') : bar.classList.remove('scroll');
+};
+
+const view = new IntersectionObserver(items => {
+    items.forEach(item => item.isIntersecting && item.target.classList.add('show'));
 });
+view.observe(hero);
 
-// WATCHER: Handles the appearance animations
-const watcher = new IntersectionObserver((list) => {
-    list.forEach((item) => {
-        if (item.isIntersecting) {
-            item.target.classList.add('show');
-        }
-    });
-}, { threshold: 0.1 });
+let active = false;
+let x, y, timer;
 
-const view = document.querySelector('.view');
-watcher.observe(view);
+el.onmousedown = e => {
+    active = true;
+    clearTimeout(timer);
+    const box = el.getBoundingClientRect();
+    x = e.clientX - box.left;
+    y = e.clientY - box.top;
+    el.style.animation = el.style.transition = el.style.transform = "none";
+    el.style.left = box.left + "px";
+    el.style.top = box.top + "px";
+    el.style.right = "auto";
+    el.style.cursor = "grabbing";
+};
 
-// MOVE: Handles dragging the astronaut
-const astro = document.getElementById('astro');
-let move = false;
-let x, y;
+window.onmousemove = e => {
+    if (!active) return;
+    el.style.left = (e.clientX - x) + "px";
+    el.style.top = (e.clientY - y) + "px";
+};
 
-astro.addEventListener('mousedown', (e) => {
-    move = true;
-    x = e.clientX - astro.offsetLeft;
-    y = e.clientY - astro.offsetTop;
-    astro.style.cursor = 'grabbing';
-    astro.style.transition = "none"; 
-});
-
-window.addEventListener('mousemove', (e) => {
-    if (!move) return;
-    astro.style.left = `${e.clientX - x}px`;
-    astro.style.top = `${e.clientY - y}px`;
-});
-
-window.addEventListener('mouseup', () => {
-    if (!move) return;
-    move = false;
-    astro.style.cursor = 'grab';
-    
-    // Smooth reset
-    astro.style.transition = "all 1s cubic-bezier(0.19, 1, 0.22, 1)";
-    astro.style.left = ""; 
-    astro.style.top = "50%";
-    astro.style.right = "5%";
-});
+window.onmouseup = () => {
+    if (!active) return;
+    active = false;
+    el.style.cursor = "grab";
+    el.style.transition = "0.8s cubic-bezier(0.2, 1, 0.2, 1)";
+    el.style.left = "";
+    el.style.right = "5%";
+    el.style.top = "50%";
+    el.style.transform = "translateY(-50%)";
+    timer = setTimeout(() => {
+        if (!active) el.style.animation = "float 6s ease-in-out infinite";
+    }, 800);
+};

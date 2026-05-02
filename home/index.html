@@ -4,50 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BigPlanetarium | Home</title>
-    <!-- Cinematic Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@800&family=Barlow:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@800&family=Barlow:wght@200;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
+    <div class="bg">
+        <img src="assets/mainbg.gif" alt="Space" class="asset">
+        <div class="shade"></div>
+    </div>
+
+    <nav class="bar">
+        <div class="wrap">
             <div class="logo">
                 <a href="index.html">
-                    <!-- The logo -->
-                    <img src="assets/logo.png" alt="BigPlanetarium Logo">
+                    <img src="assets/logo.png" alt="Logo">
                 </a>
             </div>
-            <!-- Navigation bar -->
-            <ul class="nav-links">
-                <li style="--i:1"><a href="index.html" class="active">HOME</a></li>
+            <ul class="links">
+                <li style="--i:1"><a href="index.html" class="on">HOME</a></li>
                 <li style="--i:2"><a href="planets.html">PLANETS</a></li>
                 <li style="--i:3"><a href="live-view.html">LIVE VIEW</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main View Section -->
-    <section class="view hide">
-        <!-- Background Number -->
-        <span class="bg-num">01</span>
+    <section class="hero hide">
+        <span class="num">01</span>
 
         <div class="box">
-            <p class="tag">BEYOND THE HORIZON</p>
-            <h1 class="main">Touch the<br><span class="huge">STARS</span></h1>
-            <p class="info">A simple window into the vast unknown. Come see where we’ve been and where the journey is taking us next.</p>
+            <p class="tag">WELCOME TO THE BIGPLANETARIUM</p>
+            <h1 class="main">The universe is<br><span class="big">YOURS</span></h1>
+            <p class="text">Step inside our digital observatory. Whether you're here to trace the footsteps of pioneers or gaze at the stars in real-time, your journey starts here.</p>
             
-            <div class="wrap">
-                <button class="go">START THE JOURNEY</button>
+            <div class="btn-wrap">
+                <button class="go">ENTER THE OBSERVATORY</button>
             </div>
         </div>
 
-        <!-- The Astronaut positioned over the text -->
-        <img src="assets/2.png" alt="Astronaut" class="astro" id="astro">
+        <img src="assets/2.png" alt="Astro" class="astro" id="astro" draggable="false">
     </section>
 
-    <!-- Space for scrolling to test transition -->
-    <section style="height: 100vh; background: #000;"></section>
+    <section style="height: 100vh;"></section>
 
     <script src="script.js"></script>
 </body>
