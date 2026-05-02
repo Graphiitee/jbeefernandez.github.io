@@ -1,7 +1,8 @@
+/*Settings of the whole website to keep the font and colors*/
 :root {
-    --white: #ffffff;
-    --font-heading: 'Jost', sans-serif;
-    --font-data: 'Inter', sans-serif;
+    --main: #ffffff;
+    --head: 'Jost', sans-serif;
+    --body: 'Inter', sans-serif;
 }
 
 body, html {
@@ -9,12 +10,12 @@ body, html {
     padding: 0;
     height: 100%;
     background-color: #000;
-    color: var(--white);
+    color: var(--main);
     overflow: hidden;
     cursor: url('cursor.webp'), auto; 
 }
 
-.loading-overlay {
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -27,41 +28,44 @@ body, html {
     flex-direction: column;
     align-items: center;
     z-index: 9999;
-    animation: pageIntro 2.5s ease-out forwards;
+    animation: intro 2.5s ease-out forwards;
     transition: opacity 1.5s ease-in-out, visibility 1.5s;
-    /* Block all clicks during loading */
     pointer-events: none;
 }
 
-@keyframes pageIntro {
+/*Blur intro*/
+@keyframes intro {
     0% { opacity: 0; filter: blur(10px); }
     100% { opacity: 1; filter: blur(0px); }
 }
 
-.fade-out {
+.hide {
     opacity: 0;
     visibility: hidden;
 }
 
-.hud-center { text-align: center; margin-top: 38vh; }
+.center { 
+    text-align: center; 
+    margin-top: 38vh; 
+}
 
-.main-title {
-    font-family: var(--font-heading);
+.title {
+    font-family: var(--head);
     font-size: 2rem; 
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 10px;
 }
 
-.distance-text {
-    font-family: var(--font-data);
+.distance {
+    font-family: var(--body);
     font-size: 1rem;
     margin-top: 15px;
     letter-spacing: 3px;
 }
 
-.status-subtext {
-    font-family: var(--font-data);
+.note {
+    font-family: var(--body);
     font-size: 0.7rem;
     margin-top: 40px;
     letter-spacing: 5px;
@@ -69,7 +73,8 @@ body, html {
     opacity: 0.6;
 }
 
-.corner-video {
+/*The loading icon video at the bottom right*/
+.mini {
     position: absolute;
     bottom: 30px;
     right: 30px;
@@ -78,18 +83,23 @@ body, html {
     pointer-events: none;
 }
 
-.hud-footer { position: absolute; bottom: 40px; width: 100%; text-align: center; }
+.footer { 
+    position: absolute; 
+    bottom: 40px; 
+    width: 100%; 
+    text-align: center; 
+}
 
-.fact-header {
-    font-family: var(--font-heading);
+.label {
+    font-family: var(--head);
     font-size: 0.8rem; 
     letter-spacing: 8px;
     text-transform: uppercase;
     opacity: 0.5;
 }
 
-.fact-content {
-    font-family: var(--font-data);
+.text {
+    font-family: var(--body);
     font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;

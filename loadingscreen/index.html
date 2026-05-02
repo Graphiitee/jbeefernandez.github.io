@@ -9,24 +9,27 @@
 </head>
 <body>
 
-    <div id="loading-screen" class="loading-overlay">
-        
-        <video id="vid" autoplay loop muted playsinline class="corner-video">
+    <div id="screen" class="overlay">
+        <!--Loading icon at the bottom right-->
+        <video id="vid" autoplay loop muted playsinline class="mini">
             <source src="assets/vid.mp4" type="video/mp4">
         </video>
 
-        <main class="hud-center">
-            <h1 class="main-title">Looking through the telescope</h1>
-            <div id="distance-display" class="distance-text" aria-live="polite">
+        <main class="center">
+            <!--Loading Title Screen-->
+            <h1 class="title">Looking through the telescope</h1>
+            <div id="km" class="distance" aria-live="polite">
+                <!--Visual loader-->
                 0 KM
             </div>
-            <p id="status-text" class="status-subtext">GETTING READY...</p>
+            <p id="status" class="note">GETTING READY...</p>
         </main>
 
-        <footer class="hud-footer">
-            <h2 class="fact-header">Did you know?</h2>
-            <div class="fact-container">
-                <p id="fun-fact" class="fact-content" aria-live="polite">Space is waiting for you!</p>
+        <footer class="footer">
+            <!--Bottom fun facts-->
+            <h2 class="label">Did you know?</h2>
+            <div class="wrap">
+                <p id="fact" class="text" aria-live="polite">Space is waiting for you!</p>
             </div>
         </footer>
 
