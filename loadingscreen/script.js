@@ -40,3 +40,15 @@ function finishSequence() {
 
 window.addEventListener('load', () => { setTimeout(() => { isLoaded = true; }, 3000); });
 startLoading();
+
+function finishSequence() {
+    distanceDisplay.innerText = "TARGET FOUND!";
+    statusDisplay.innerText = "CONNECTION MADE! READY FOR BLAST OFF!";
+    setTimeout(() => {
+        loadingScreen.classList.add('fade-out');
+        setTimeout(() => { 
+            // Keeps the music playing from the background
+            window.parent.document.getElementById('siteContent').src = "../signin/index.html"; 
+        }, 1500);
+    }, 1200);
+}
