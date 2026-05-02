@@ -8,30 +8,35 @@
 </head>
 <body>
 
-    <div class="video-tint"></div>
-    <video autoplay muted loop playsinline id="bg-video" class="bg-fade-in">
+    <div class="tint"></div>
+    <video autoplay muted loop playsinline id="video" class="show">
         <source src="bg/bg.mp4" type="video/mp4">
     </video>
 
-    <div id="signin-box" class="hologram-card">
-        <div id="handle" class="drag-handle">⋮⋮ USER ACCESS ⋮⋮</div>
-        <div class="content">
-            <h1 class="main-title">SIGN IN</h1>
-            <p class="subtitle">!! Please enter your details to keep the data you have !!</p>
+    <div id="box" class="card">
+        <!--Top title-->
+        <div id="top" class="grab">⋮⋮ USER ACCESS ⋮⋮</div>
+        <div class="body">
+            <h1 class="header">SIGN IN</h1>
+            <!--Subtile-->
+            <p class="note">!! Please enter your details to keep the data you have !!</p>
+            <!--Username box-->
+            <input type="text" placeholder="USERNAME" class="field">
+            <!--Password box-->
+            <input type="password" placeholder="PASSWORD" class="field">
             
-            <input type="text" placeholder="USERNAME" class="input-field">
-            <input type="password" placeholder="PASSWORD" class="input-field">
+            <button class="login" onclick="window.location.href='../home/index.html'">SIGN IN</button>
             
-            <button class="btn-primary" onclick="window.location.href='../home.html'">SIGN IN</button>
+            <div class="line">OR</div>
             
-            <div class="divider">OR</div>
-            
-            <button class="btn-google" onclick="window.location.href='../home.html'">
+            <!--Continue with google sign in box-->
+            <button class="google" onclick="window.location.href='../home/index.html'">
                 <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="G">
                 CONTINUE WITH GOOGLE
             </button>
             
-            <a href="../home.html" class="guest-link">CONTINUE AS GUEST</a>
+            <!--Continue as guest bottom text-->
+            <a href="../home/index.html" class="guest">CONTINUE AS GUEST</a>
         </div>
     </div>
 
