@@ -20,6 +20,7 @@ body {
     overflow-x: hidden;
 }
 
+/*background*/
 .bg {
     position: fixed;
     top: 0;
@@ -45,6 +46,7 @@ body {
     background: radial-gradient(circle, transparent 0%, #000 90%);
 }
 
+/*Navigation bar*/
 .bar {
     position: fixed;
     top: 0;
@@ -58,7 +60,7 @@ body {
 
 .bar.scroll {
     height: 80px;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
 }
 
@@ -70,7 +72,9 @@ body {
     justify-content: space-between;
 }
 
-.logo img { height: 28px; }
+.logo img {
+    height: 28px;
+}
 
 .links {
     display: flex;
@@ -91,7 +95,6 @@ body {
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 2px;
-    position: relative;
 }
 
 .links a::after {
@@ -105,9 +108,13 @@ body {
     transition: 0.3s;
 }
 
-.links a:hover::after, .links a.on::after { width: 100%; }
+.links a:hover::after, 
+.links a.on::after {
+    width: 100%;
+}
 
-.hero {
+/*The main section of website at the top*/
+.stage {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -136,7 +143,7 @@ body {
     line-height: 0.9;
 }
 
-.big {
+span.main {
     font-size: 11rem;
     font-weight: 800;
     letter-spacing: -5px;
@@ -149,18 +156,34 @@ body {
     opacity: 0.7;
 }
 
+/*Action button*/
 .go {
     margin-top: 30px;
     background: none;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: #fff;
     padding: 12px 30px;
     cursor: pointer;
     transition: 0.3s;
 }
 
-.go:hover { background: #fff; color: #000; }
+.go:hover {
+    background: #fff;
+    color: #000;
+}
 
+/*Typewriting effect(The blinking rectangle)*/
+span.main::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Astronaut */
 .astro {
     position: absolute;
     right: 5%;
@@ -172,6 +195,7 @@ body {
     animation: float 6s ease-in-out infinite;
 }
 
+/*Animations*/
 @keyframes float {
     0%, 100% { transform: translateY(-50%) rotate(0deg); }
     50% { transform: translateY(-55%) rotate(2deg); }
@@ -182,5 +206,14 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.hide { opacity: 0; filter: blur(10px); transition: 1s; }
-.show { opacity: 1; filter: blur(0); }
+/*Transition intro*/
+.hide {
+    opacity: 0;
+    filter: blur(10px);
+    transition: 1s;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+}

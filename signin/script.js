@@ -1,8 +1,20 @@
 const box = document.getElementById("box");
 const topPart = document.getElementById("top");
+const video = document.getElementById("video");
 let active = false, startX, startY;
 
-// Activating dragging with mouse when the sign in box is held
+const playVideo = () => {
+    if (video) {
+        video.muted = true;
+        video.play().catch(() => {});
+    }
+};
+
+window.addEventListener('load', playVideo);
+document.addEventListener('mousedown', playVideo, { once: true });
+
+box.addEventListener('dblclick', (e) => e.preventDefault());
+
 topPart.addEventListener("mousedown", (e) => {
     active = true;
     startX = e.clientX - box.offsetLeft;
@@ -10,14 +22,15 @@ topPart.addEventListener("mousedown", (e) => {
     topPart.style.cursor = "grabbing";
 });
 
-// Makes the sign in box stay in the screen
 document.addEventListener("mousemove", (e) => {
     if (active) {
         let x = e.clientX - startX;
         let y = e.clientY - startY;
         
-        const wide = window.innerWidth, high = window.innerHeight;
-        const w = box.offsetWidth, h = box.offsetHeight;
+        const wide = window.innerWidth;
+        const high = window.innerHeight;
+        const w = box.offsetWidth;
+        const h = box.offsetHeight;
         
         if (x < 0) x = 0; 
         if (y < 0) y = 0; 
@@ -30,7 +43,6 @@ document.addEventListener("mousemove", (e) => {
     }
 });
 
-// Deactivates dragging with mouse when let go so the sign in box can be clicked on again to put details
 document.addEventListener("mouseup", () => { 
     active = false; 
     topPart.style.cursor = "grab"; 

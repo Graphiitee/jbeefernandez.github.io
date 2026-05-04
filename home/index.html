@@ -3,48 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BigPlanetarium | Home</title>
+    <title>BigPlanetarium | Home</title> <!-- Project name -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@800&family=Barlow:wght@200;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Background -->
     <div class="bg">
         <img src="assets/mainbg.gif" alt="Space" class="asset">
         <div class="shade"></div>
     </div>
 
+    <!-- Nav Bar -->
     <nav class="bar">
         <div class="wrap">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/logo.png" alt="Logo">
+                    <img src="assets/logo.png" alt="Logo"> <!-- Local logo file -->
                 </a>
             </div>
             <ul class="links">
-                <li style="--i:1"><a href="index.html" class="on">HOME</a></li>
-                <li style="--i:2"><a href="planets.html">PLANETS</a></li>
-                <li style="--i:3"><a href="live-view.html">LIVE VIEW</a></li>
+                <li style="--i:1"><a href="index.html" class="on">HOME</a></li> <!-- Nav component -->
+                <li style="--i:2"><a href="planets.html">PLANETS</a></li> <!-- Nav component -->
+                <li style="--i:3"><a href="live-view.html">LIVE VIEW</a></li> <!-- Nav component -->
             </ul>
         </div>
     </nav>
 
-    <section class="hero hide">
+    <!-- Main Stage -->
+    <section class="stage hide">
         <span class="num">01</span>
 
         <div class="box">
-            <p class="tag">WELCOME TO THE BIGPLANETARIUM</p>
-            <h1 class="main">The universe is<br><span class="big">YOURS</span></h1>
-            <p class="text">Step inside our digital observatory. Whether you're here to trace the footsteps of pioneers or gaze at the stars in real-time, your journey starts here.</p>
+            <p class="tag">SEE THE UNKNOWN</p>
+            <h1 class="main">
+                GO FAR INTO<br>
+                <span class="main" id="typewriter"></span> <!-- Renamed from big to main -->
+            </h1>
+            <p class="text">
+                There is so much to see out there. 
+                Get ready to explore new worlds and meet the planets.
+            </p>
             
             <div class="btn-wrap">
                 <button class="go">ENTER THE OBSERVATORY</button>
             </div>
         </div>
 
+        <!-- Draggable Astronaut -->
         <img src="assets/2.png" alt="Astro" class="astro" id="astro" draggable="false">
     </section>
 
+    <!-- Extra Space -->
     <section style="height: 100vh;"></section>
 
     <script src="script.js"></script>
