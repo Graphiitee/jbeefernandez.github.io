@@ -18,9 +18,10 @@ body {
     font-family: var(--body);
     color: var(--white);
     overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-/*background*/
 .bg {
     position: fixed;
     top: 0;
@@ -34,7 +35,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.5);
+    filter: brightness(0.4);
 }
 
 .shade {
@@ -46,7 +47,6 @@ body {
     background: radial-gradient(circle, transparent 0%, #000 90%);
 }
 
-/*Navigation bar*/
 .bar {
     position: fixed;
     top: 0;
@@ -113,22 +113,12 @@ body {
     width: 100%;
 }
 
-/*The main section of website at the top*/
 .stage {
     height: 100vh;
     display: flex;
     align-items: center;
     padding-left: 10%;
     position: relative;
-}
-
-.num {
-    position: absolute;
-    left: 5%;
-    bottom: 8%;
-    font-family: var(--head);
-    font-size: 9rem;
-    opacity: 0.05;
 }
 
 .tag {
@@ -156,7 +146,6 @@ span.main {
     opacity: 0.7;
 }
 
-/*Action button*/
 .go {
     margin-top: 30px;
     background: none;
@@ -172,7 +161,6 @@ span.main {
     color: #000;
 }
 
-/*Typewriting effect(The blinking rectangle)*/
 span.main::after {
     content: '|';
     animation: blink 1s infinite;
@@ -183,7 +171,6 @@ span.main::after {
     50% { opacity: 0; }
 }
 
-/* Astronaut */
 .astro {
     position: absolute;
     right: 5%;
@@ -195,7 +182,6 @@ span.main::after {
     animation: float 6s ease-in-out infinite;
 }
 
-/*Animations*/
 @keyframes float {
     0%, 100% { transform: translateY(-50%) rotate(0deg); }
     50% { transform: translateY(-55%) rotate(2deg); }
@@ -206,7 +192,6 @@ span.main::after {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/*Transition intro*/
 .hide {
     opacity: 0;
     filter: blur(10px);

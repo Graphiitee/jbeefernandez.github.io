@@ -1,88 +1,91 @@
-const bar = document.querySelector('.bar');
-const astronaut = document.getElementById('astro');
 const stage = document.querySelector('.stage');
-const typeSpan = document.getElementById("typewriter");
+const bar = document.querySelector('.bar');
+const typewriter = document.getElementById('typewriter');
+const astro = document.getElementById('astro');
 
-//Makes the navigation kind of compressed when scrolled
-window.onscroll = () => {
+window.addEventListener('load', () => {
+    stage.classList.add('show');
+    startTypewriter();
+});
+
+window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
         bar.classList.add('scroll');
     } else {
         bar.classList.remove('scroll');
     }
-};
-
-//Main title
-const observer = new IntersectionObserver(items => {
-    items.forEach(item => {
-        if (item.isIntersecting) {
-            item.target.classList.add('show');
-            setTimeout(startType, 500); //type writer effect on "space"
-            observer.unobserve(item.target); //will only show once
-        }
-    });
 });
-observer.observe(stage);
 
-//typewriter effect
-const word = "SPACE";
-let charIndex = 0;
+const words = ["THE VOID", "SPACE", "GALAXY", "PLANETS"];
+let wordIdx = 0;
+let charIdx = 0;
+let isDeleting = false;
 
-function startType() {
-    if (charIndex < word.length) {
-        typeSpan.innerHTML += word.charAt(charIndex);
-        charIndex++;
-        setTimeout(startType, 200); // Speed
+function startTypewriter() {
+    const currentWord = words[wordIdx];
+    
+    if (isDeleting) {
+        typewriter.textContent = currentWord.substring(0, charIdx - 1);
+        charIdx--;
+    } else {
+        typewriter.textContent = currentWord.substring(0, charIdx + 1);
+        charIdx++;
     }
+
+    let speed = isDeleting ? 100 : 200;
+
+    if (!isDeleting && charIdx === currentWord.length) {
+        isDeleting = true;
+        speed = 2000;
+    } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        wordIdx = (wordIdx + 1) % words.length;
+        speed = 500;
+    }
+
+    setTimeout(startTypewriter, speed);
 }
 
-//Dragging variables
-let active = false;
-let x, y, timer;
+let active = false, startX, startY;
 
-//Grabbing
-astronaut.onmousedown = e => {
+astro.addEventListener("mousedown", (e) => {
+    e.preventDefault();
     active = true;
-    clearTimeout(timer); //Stop reset
     
-    const box = astronaut.getBoundingClientRect();
-    x = e.clientX - box.left;
-    y = e.clientY - box.top;
-    
-    astronaut.style.animation = "none";
-    astronaut.style.transition = "none";
-    astronaut.style.transform = "none";
-    astronaut.style.left = box.left + "px";
-    astronaut.style.top = box.top + "px";
-    astronaut.style.right = "auto";
-    astronaut.style.cursor = "grabbing";
-};
+    const rect = astro.getBoundingClientRect();
+    startX = e.clientX - rect.left;
+    startY = e.clientY - rect.top;
 
-//Moving the astronaut
-window.onmousemove = e => {
+    astro.style.transition = "none"; 
+    astro.style.animation = "none";
+    astro.style.cursor = "grabbing";
+});
+
+document.addEventListener("mousemove", (e) => {
     if (!active) return;
-    astronaut.style.left = (e.clientX - x) + "px";
-    astronaut.style.top = (e.clientY - y) + "px";
-};
-
-//Releases the astronaut
-window.onmouseup = () => {
-    if (!active) return;
-    active = false;
     
-    astronaut.style.cursor = "grab";
-    astronaut.style.transition = "0.8s cubic-bezier(0.2, 1, 0.2, 1)";
+    const stageRect = stage.getBoundingClientRect();
     
-    //Returns the astronaut
-    astronaut.style.left = "";
-    astronaut.style.right = "5%";
-    astronaut.style.top = "50%";
-    astronaut.style.transform = "translateY(-50%)";
+    let x = e.clientX - startX - stageRect.left;
+    let y = e.clientY - startY - stageRect.top;
+    
+    astro.style.right = "auto";
+    astro.style.bottom = "auto";
+    astro.style.transform = "none";
+    astro.style.left = x + "px";
+    astro.style.top = y + "px";
+});
 
-    //Restarts floating
-    timer = setTimeout(() => {
-        if (!active) {
-            astronaut.style.animation = "float 6s ease-in-out infinite";
-        }
-    }, 800);
-};
+document.addEventListener("mouseup", () => {
+    if (active) {
+        active = false;
+        astro.style.cursor = "grab";
+        astro.style.transition = "all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        
+        astro.style.left = "";       
+        astro.style.top = "50%";     
+        astro.style.right = "5%";    
+        astro.style.transform = "translateY(-50%)"; 
+        astro.style.animation = "float 6s ease-in-out infinite"; 
+    }
+});

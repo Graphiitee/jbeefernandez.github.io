@@ -3,44 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BigPlanetarium | Home</title> <!-- Project name -->
-    <!-- Fonts -->
+    <title>BigPlanetarium | Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@800&family=Barlow:wght@200;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Background -->
     <div class="bg">
-        <img src="assets/mainbg.gif" alt="Space" class="asset">
+        <video autoplay muted loop playsinline class="asset">
+            <source src="assets/mainbg.mp4" type="video/mp4">
+        </video>
         <div class="shade"></div>
     </div>
 
-    <!-- Nav Bar -->
     <nav class="bar">
         <div class="wrap">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/logo.png" alt="Logo"> <!-- Local logo file -->
+                    <img src="assets/logo.png" alt="Logo">
                 </a>
             </div>
             <ul class="links">
-                <li style="--i:1"><a href="index.html" class="on">HOME</a></li> <!-- Nav component -->
-                <li style="--i:2"><a href="planets.html">PLANETS</a></li> <!-- Nav component -->
-                <li style="--i:3"><a href="live-view.html">LIVE VIEW</a></li> <!-- Nav component -->
+                <li style="--i:1"><a href="index.html" class="on">HOME</a></li>
+                <li style="--i:2"><a href="planets.html">PLANETS</a></li>
+                <li style="--i:3"><a href="live-view.html">LIVE VIEW</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Stage -->
     <section class="stage hide">
-        <span class="num">01</span>
-
         <div class="box">
             <p class="tag">SEE THE UNKNOWN</p>
             <h1 class="main">
                 GO FAR INTO<br>
-                <span class="main" id="typewriter"></span> <!-- Renamed from big to main -->
+                <span class="main" id="typewriter"></span>
             </h1>
             <p class="text">
                 There is so much to see out there. 
@@ -48,15 +44,13 @@
             </p>
             
             <div class="btn-wrap">
-                <button class="go">ENTER THE OBSERVATORY</button>
+                <button class="go" onclick="window.location.href='../home/index.html'">ENTER THE OBSERVATORY</button>
             </div>
         </div>
 
-        <!-- Draggable Astronaut -->
         <img src="assets/2.png" alt="Astro" class="astro" id="astro" draggable="false">
     </section>
 
-    <!-- Extra Space -->
     <section style="height: 100vh;"></section>
 
     <script src="script.js"></script>
