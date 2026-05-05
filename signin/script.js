@@ -15,13 +15,16 @@ document.addEventListener('mousedown', playVideo, { once: true });
 
 box.addEventListener('dblclick', (e) => e.preventDefault());
 
+//waits on pressing down on the top handle of the sign in box
 topPart.addEventListener("mousedown", (e) => {
     active = true;
+    //calculates the mouse position so it doesnt go off the pointer
     startX = e.clientX - box.offsetLeft;
     startY = e.clientY - box.offsetTop;
     topPart.style.cursor = "grabbing";
 });
 
+//tracks mouse movement
 document.addEventListener("mousemove", (e) => {
     if (active) {
         let x = e.clientX - startX;

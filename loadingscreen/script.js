@@ -33,12 +33,12 @@ const statusDisplay = document.getElementById('status');
 const screen = document.getElementById('screen');
 
 let ready = false;
-let finished = false; // New variable to track when the sequence is truly done
+let finished = false; //track when its done
 let progress = 0;
 const goal = Math.floor(Math.random() * 190000000) + 60000000; 
 
 function start() {
-    // This timer now runs as long as the page hasn't finished its transition
+    //timer runs as long as the page hasntt finished its transition
     const textTimer = setInterval(() => { 
         if (!finished) { 
             factDisplay.innerText = facts[Math.floor(Math.random() * facts.length)]; 
@@ -48,14 +48,14 @@ function start() {
 
     const loadPulse = setInterval(() => {
         if (!ready) {
-            // Slow loading phase
+            //loading phase
             if (progress < goal * 0.9) progress += Math.floor(Math.random() * 3000000) + 1000000;
         } else {
-            // Fast completion phase once window is loaded
+            //completion phase once window is loaded
             progress += 8000000;
             if (progress >= goal) {
                 progress = goal;
-                finished = true; // Stop the text from changing
+                finished = true; //stops the text from changing
                 clearInterval(loadPulse);
                 clearInterval(textTimer);
                 finish();
@@ -75,7 +75,6 @@ function finish() {
 }
 
 window.addEventListener('load', () => { 
-    // Wait 3 seconds before allowing the "fast" finish to start
     setTimeout(() => { ready = true; }, 3000); 
 });
 
