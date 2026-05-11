@@ -16,7 +16,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-const words = ["THE VOID", "SPACE", "GALAXY", "PLANETS"];
+const words = ["SPACE", "GALAXY", "THE STARS", "PLANETS"];
 let wordIdx = 0;
 let charIdx = 0;
 let isDeleting = false;
