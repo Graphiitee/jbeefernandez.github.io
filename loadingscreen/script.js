@@ -101,7 +101,7 @@ function runExitTransition() {
     }, 1200);
 }
 
-//will check if the websitei is loaded
+//will check if the website is loaded
 window.addEventListener('load', function() { 
     //wait 3 seconds after the website loads
     setTimeout(function() { 
