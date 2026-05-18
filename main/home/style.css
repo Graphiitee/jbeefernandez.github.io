@@ -1,0 +1,341 @@
+/* css variables — one place to control all colors and fonts
+   so you only need to update a value here to change it everywhere
+   https://www.w3schools.com/css/css3_variables.asp */
+:root {
+    --black:       #000000;
+    --bg-dark:     #020202;
+    --white:       #ffffff;
+    --card-border: rgba(255, 255, 255, 0.05);
+    --overlay:     rgba(0, 0, 0, 0.4);
+    --grey:        rgba(255, 255, 255, 0.5);
+    --font-head:   'Jost', sans-serif;
+    --font-body:   'Inter', sans-serif;
+}
+
+/* for the whole page */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    /* hides the scrollbar without blocking scroll */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* targets the webkit scrollbar directly to hide it */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* fixed navbar so it stays visible while scrolling */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    z-index: 100;
+    /* fades to transparent so the video shows through underneath */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+}
+
+/* holds the logo on the left */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* logo size */
+.logo-img {
+    height: 35px;
+    width: auto;
+}
+
+/* groups the nav links on the right */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding-right: 50px;
+}
+
+/* styles each nav link */
+.nav-item {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /* position: relative lets the underline be placed below the text
+       https://www.w3schools.com/css/css_positioning.asp */
+    position: relative;
+    padding-bottom: 6px;
+}
+
+/* creates the underline that grows on hover
+   starts at width 0 so it's invisible by default
+   https://www.w3schools.com/css/css_pseudo_elements.asp */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--white);
+    transition: width 0.3s ease;
+}
+
+/* expands the underline to full width on hover */
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* styled button variant for the sign in link */
+.navbar-btn {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+/* removes the underline effect from the button */
+.navbar-btn::after {
+    display: none;
+}
+
+/* fills the button white on hover */
+.navbar-btn:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/* fullscreen section panels — position: relative lets
+   the video and overlay be placed inside it absolutely
+   https://www.w3schools.com/css/css_positioning.asp */
+.spacex-panel {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: var(--black);
+}
+
+/* background video — z-index 1 puts it behind the overlay and content */
+.panel-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* dark tint layer over the video so text is readable
+   z-index 2 puts it on top of the video but below the content */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay);
+    z-index: 2;
+}
+
+/* floating astronaut image positioned on the right side */
+.stage-astronaut {
+    position: absolute;
+    right: 12%;
+    top: 25%;
+    width: 450px;
+    height: auto;
+    z-index: 3;
+    /* starts at no movement — dragging will change this via js */
+    transform: translate(0, 0);
+    cursor: grab;
+    /* prevents the image from being highlighted when clicked */
+    user-select: none;
+    /* smooth return animation when released — js removes this while dragging */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* applied by js while the astronaut is being held */
+.stage-astronaut.dragging {
+    cursor: grabbing;
+    /* removes the transition while dragging so it follows the mouse instantly */
+    transition: none;
+}
+
+/* text content container — z-index 3 keeps it above video and overlay */
+.panel-content {
+    position: relative;
+    max-width: 500px;
+    z-index: 3;
+}
+
+/* main large panel title */
+.panel-title {
+    font-family: var(--font-head);
+    font-size: 3.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin: 0 0 5px 0;
+}
+
+/* smaller subtitle below the title */
+.panel-subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.75;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 35px 0;
+}
+
+/* section headings used in lower panels */
+.section-title {
+    font-family: var(--font-head);
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0 0 15px 0;
+}
+
+/* paragraph text below section titles */
+.section-desc {
+    font-size: 1rem;
+    color: var(--grey);
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+/* outlined button used across all panels */
+.panel-btn {
+    display: inline-block;
+    color: var(--white);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border: 2px solid var(--white);
+    padding: 15px 35px;
+    transition: all 0.4s ease;
+}
+
+/* fills the button on hover */
+.panel-btn:hover {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+/* the live view section uses a background image instead of a video */
+.dark-bg {
+    background-image: linear-gradient(var(--overlay), var(--overlay)), url('assets/orbital.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* centers the panel content horizontally for the mission section */
+.content-center {
+    justify-content: center;
+    padding-left: 0;
+}
+
+/* centers the text inside the panel */
+.text-center {
+    text-align: center;
+    max-width: 700px;
+}
+
+/* italic quote text for the mission section */
+.mission-quote {
+    font-size: 1.4rem;
+    font-style: italic;
+    opacity: 0.85;
+    line-height: 1.8;
+    margin: 0 auto;
+}
+
+/* statistics section between the live view and mission panels */
+.metrics-panel {
+    background-color: var(--bg-dark);
+    padding: 80px 0;
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+}
+
+/* centers and spaces the three stats evenly */
+.metrics-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+/* the large number in each stat block */
+.stat-number {
+    display: block;
+    font-family: var(--font-head);
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+/* the small label below each number */
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.5;
+}
+
+/* footer bar at the bottom of the page */
+.main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 50px;
+    background-color: var(--black);
+    border-top: 1px solid var(--card-border);
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+/* groups the footer links on the right */
+.footer-links {
+    display: flex;
+    gap: 25px;
+}
+
+/* footer link text */
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* underline on hover */
+.footer-links a:hover {
+    text-decoration: underline;
+}

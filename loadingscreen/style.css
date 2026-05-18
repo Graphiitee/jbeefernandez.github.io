@@ -1,107 +1,105 @@
-/*Settings of the whole website to keep the font and colors*/
-:root {
-    --main: #ffffff;
-    --head: 'Jost', sans-serif;
-    --body: 'Inter', sans-serif;
-}
+/*https://www.w3schools.com/css/css_background.asp*/
+/*https://www.w3schools.com/css/css_font.asp*/
+/*https://www.w3schools.com/css/css3_animations.asp*/
 
+/*For the whole page*/
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     background-color: #000;
-    color: var(--main);
-    overflow: hidden;
-    cursor: url('cursor.webp'), auto; 
+    color: #ffffff;
+    overflow: hidden; /*disables scroll*/
 }
 
+/*For the background*/
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+    /*tints the background so the text is much more visible*/
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
                 url('assets/loadingbg.gif') no-repeat center center;
     background-size: cover;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 9999;
-    animation: intro 2.5s ease-out forwards;
-    transition: opacity 1.5s ease-in-out, visibility 1.5s;
-    pointer-events: none;
+    /*https://www.w3schools.com/CSSref/index.php*/
+    flex-direction: column; /*fixes the proportions of the items*/
+    align-items: center; /*centers the items*/
+    justify-content: center; /* Centers items vertically up and down */
+    z-index: 9999; /*will make the background go behind the text*/
+    animation: introBlur 2.5s ease-out forwards; /*Blur effect*/
+    transition: opacity 1.5s ease-in-out; /*fade out effect*/
 }
 
-/*Blur intro*/
-@keyframes intro {
-    0% { opacity: 0; filter: blur(10px); }
-    100% { opacity: 1; filter: blur(0px); }
+/*animation for the blur effect*/
+@keyframes introBlur {
+    0% { opacity: 0; filter: blur(15px); } /*starts being blurry*/
+    100% { opacity: 1; filter: blur(0px); } /*ends with the screen being clear*/
 }
 
+/*for the hideout effect*/
 .hide {
-    opacity: 0;
-    visibility: hidden;
+    opacity: 0; /* Makes it completely see-through */
+    pointer-events: none; /* Stops the user from accidental clicks on hidden elements */
 }
 
 .center { 
     text-align: center; 
-    margin-top: 38vh; 
 }
 
+/*title*/
 .title {
-    font-family: var(--head);
-    font-size: 2rem; 
+    font-family: 'Jost', sans-serif;
+    font-size: 1.8rem; 
     font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 10px;
+    text-transform: uppercase; /*caps all letters*/
+    letter-spacing: 12px;
 }
 
+/*distance numbers*/
 .distance {
-    font-family: var(--body);
-    font-size: 1rem;
-    margin-top: 15px;
-    letter-spacing: 3px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    letter-spacing: 4px;
 }
 
+/*status index*/
 .note {
-    font-family: var(--body);
+    font-family: 'Inter', sans-serif;
     font-size: 0.7rem;
     margin-top: 40px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    opacity: 0.6;
-}
-
-/*The loading icon video at the bottom right*/
-.mini {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    width: 120px;
-    opacity: 0.9;
-    pointer-events: none;
-}
-
-.footer { 
-    position: absolute; 
-    bottom: 40px; 
-    width: 100%; 
-    text-align: center; 
-}
-
-.label {
-    font-family: var(--head);
-    font-size: 0.8rem; 
-    letter-spacing: 8px;
+    letter-spacing: 6px;
     text-transform: uppercase;
     opacity: 0.5;
 }
 
+/*puts the facts below*/
+.footer { 
+    position: absolute; 
+    bottom: 50px;
+    width: 100%; 
+    text-align: center;
+}
+
+/*Did you know text*/
+.label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem; 
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    opacity: 0.4; /* Makes it look like a subtle, clean caption */
+    margin-bottom: 10px;
+}
+
+/*randomized space facts*/
 .text {
-    font-family: var(--body);
-    font-size: 1.1rem;
-    max-width: 600px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    max-width: 550px;
     margin: 0 auto;
-    line-height: 1.5;
+    line-height: 1.6; 
+    font-weight: 300;
 }

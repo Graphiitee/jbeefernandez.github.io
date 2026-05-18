@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigPlanetarium | Live Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="../home/assets/logo.png" alt="BigPlanetarium Logo" class="logo-img">
+        </div>
+        <nav class="nav-links">
+            <a href="../home/index.html#stage" class="nav-item">Home</a>
+            <a href="../home/index.html#live-view" class="nav-item">Live View</a>
+            <a href="../planets/index.html" class="nav-item">Planets</a>
+            <a href="../../signin/index.html" class="nav-item navbar-btn">Sign In</a>
+        </nav>
+    </header>
+    <div class="terminal-container">
+        <div class="map-area">
+            <div class="solar-system">
+                <div class="sun"
+                     data-name="The Sun"
+                     data-distance="0 km (Center)"
+                     data-day="25 Earth Days"
+                     data-age="4.6 Billion Years"
+                     data-moons="N/A"
+                     data-satellites="22 Active Probes"></div>
+                <div class="orbit-track mercury-track"></div>
+                <div class="orbit-fixed mercury-fixed">
+                    <button class="planet-node mercury-node"
+                            data-name="Mercury"
+                            data-distance="57.9 Million km"
+                            data-day="59 Earth Days"
+                            data-age="4.5 Billion Years"
+                            data-moons="0 Moons"
+                            data-satellites="1 Active"></button>
+                </div>
+                <div class="orbit-track venus-track"></div>
+                <div class="orbit-fixed venus-fixed">
+                    <button class="planet-node venus-node"
+                            data-name="Venus"
+                            data-distance="108.2 Million km"
+                            data-day="243 Earth Days"
+                            data-age="4.5 Billion Years"
+                            data-moons="0 Moons"
+                            data-satellites="2 Active"></button>
+                </div>
+                <div class="orbit-track earth-track"></div>
+                <div class="orbit-fixed earth-fixed">
+                    <button class="planet-node earth-node"
+                            data-name="Earth"
+                            data-distance="149.6 Million km"
+                            data-day="24 Hours"
+                            data-age="4.54 Billion Years"
+                            data-moons="1 Moon"
+                            data-satellites="9,000+ Active"></button>
+                </div>
+                <div class="orbit-track mars-track"></div>
+                <div class="orbit-fixed mars-fixed">
+                    <button class="planet-node mars-node"
+                            data-name="Mars"
+                            data-distance="227.9 Million km"
+                            data-day="24.6 Hours"
+                            data-age="4.5 Billion Years"
+                            data-moons="2 Moons"
+                            data-satellites="8 Active"></button>
+                </div>
+                <div class="orbit-track jupiter-track"></div>
+                <div class="orbit-fixed jupiter-fixed">
+                    <button class="planet-node jupiter-node"
+                            data-name="Jupiter"
+                            data-distance="778.5 Million km"
+                            data-day="9.9 Hours"
+                            data-age="4.5 Billion Years"
+                            data-moons="95 Moons"
+                            data-satellites="1 Active"></button>
+                </div>
+                <div class="orbit-track saturn-track"></div>
+                <div class="orbit-fixed saturn-fixed">
+                    <button class="planet-node saturn-node"
+                            data-name="Saturn"
+                            data-distance="1.4 Billion km"
+                            data-day="10.7 Hours"
+                            data-age="4.5 Billion Years"
+                            data-moons="146 Moons"
+                            data-satellites="0 Active"></button>
+                </div>
+                <div class="orbit-track uranus-track"></div>
+                <div class="orbit-fixed uranus-fixed">
+                    <button class="planet-node uranus-node"
+                            data-name="Uranus"
+                            data-distance="2.9 Billion km"
+                            data-day="17.2 Hours"
+                            data-age="4.5 Billion Years"
+                            data-moons="28 Moons"
+                            data-satellites="0 Active"></button>
+                </div>
+                <div class="orbit-track neptune-track"></div>
+                <div class="orbit-fixed neptune-fixed">
+                    <button class="planet-node neptune-node"
+                            data-name="Neptune"
+                            data-distance="4.5 Billion km"
+                            data-day="16.1 Hours"
+                            data-age="4.5 Billion Years"
+                            data-moons="16 Moons"
+                            data-satellites="0 Active"></button>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-area">
+            <div class="telemetry-card">
+                <span class="system-status">System Connected</span>
+                <h1 id="telemetry-title">Select Object</h1>
+                <p class="telemetry-desc">Click on any planet node or the Sun within the radar map to view its current status.</p>
+
+                <div class="data-rows">
+                    <div class="data-row">
+                        <span class="data-label">Sun Distance</span>
+                        <span class="data-value" id="val-distance">--</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Day Length</span>
+                        <span class="data-value" id="val-day">--</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Planet Age</span>
+                        <span class="data-value" id="val-age">--</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Natural Moons</span>
+                        <span class="data-value" id="val-moons">--</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Artificial Satellites</span>
+                        <span class="data-value" id="val-satellites">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="date-stamp">Updated in 5/18/2026</div>
+    <script src="script.js"></script>
+</body>
+</html>

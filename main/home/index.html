@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigPlanetarium | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="BigPlanetarium Logo" class="logo-img">
+        </div>
+        <nav class="nav-links">
+            <a href="#stage" class="nav-item">Home</a>
+            <a href="#live-view" class="nav-item">Live View</a>
+            <a href="../planets/index.html" class="nav-item">Planets</a>
+            <a href="../../signin/index.html" class="nav-item navbar-btn">Sign In</a>
+        </nav>
+    </header>
+
+    <!-- 1. hero section with video background -->
+    <section id="stage" class="spacex-panel">
+        <video autoplay muted loop playsinline class="panel-video" src="assets/stage.mp4"></video>
+        <div class="video-overlay"></div>
+        <img src="assets/astronaut.png" alt="Floating Astronaut" class="stage-astronaut" id="draggableAstronaut">
+        <div class="panel-content">
+            <h1 class="panel-title">The Milky Way</h1>
+            <p class="panel-subtitle">An Educational Guide to the Solar System</p>
+            <a href="../planets/index.html" class="panel-btn">Explore Planets</a>
+        </div>
+    </section>
+
+    <!-- 2. mission section moved up so it comes right after the hero -->
+    <section id="mission" class="spacex-panel content-center">
+        <video autoplay muted loop playsinline class="panel-video" src="assets/deepnebula.mp4"></video>
+        <div class="video-overlay"></div>
+        <div class="panel-content text-center">
+            <h2 class="section-title">Our Mission</h2>
+            <p class="mission-quote">
+                "To make the wonders of our galaxy open, interactive, and
+                completely accessible to every curious mind on Earth."
+            </p>
+        </div>
+    </section>
+
+    <!-- 3. stats strip between mission and live view -->
+    <section id="metrics" class="metrics-panel">
+        <div class="metrics-grid">
+            <div class="stat-box">
+                <span class="stat-number">8</span>
+                <span class="stat-label">Documented Planets</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">200B+</span>
+                <span class="stat-label">Total Stars</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">1</span>
+                <span class="stat-label">Shared Cosmic Home</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. live view moved to the bottom — description and button text updated -->
+    <section id="live-view" class="spacex-panel dark-bg">
+        <div class="panel-content">
+            <h2 class="section-title">Orbital Live View</h2>
+            <p class="section-desc">
+                See where every planet sits in the solar system, right now.
+            </p>
+            <a href="../liveview/index.html" class="panel-btn">Open Map</a>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <span class="copyright">© 2026 BigPlanetarium</span>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,81 +1,110 @@
-const facts = [
+//https://www.w3schools.com/js/js_const.asp
+
+//GOALS:
+//Fun Facts - https://www.w3schools.com/js/js_random.asp
+//Loading Status - https://www.w3schools.com/js/js_random.asp
+//Randomized number loader
+
+const spaceFacts = [
     "Sound cannot travel in space, so a supernova would be completely silent.",
-    "On Saturn and Jupiter, the extreme pressure creates literal diamond rain.",
-    "The water in your glass is actually billions of years older than the Sun.",
-    "If two pieces of the same metal touch in space, they bond together forever.",
-    "There is a massive 'void' in space that is 330 million light-years of nothing.",
-    "It is so hot on Venus that it 'snows' metallic lead and bismuth.",
-    "Venus rotates so slowly that its day is longer than its entire year.",
-    "Saturn is less dense than water; it would float in a giant bathtub.",
-    "Sunsets on Mars appear blue to the human eye due to Martian dust.",
-    "The Moon is slowly shrinking, causing 'moonquakes' across its surface.",
-    "The Sun makes up 99.86% of the total mass in our solar system.",
-    "Over 1.3 million Earths could fit inside a hollowed-out Sun.",
-    "If space had air, the Sun’s roar would be as loud as a rock concert on Earth.",
-    "Pluto has a massive, heart-shaped glacier made of nitrogen ice.",
-    "Mercury has a literal tail like a comet, made of sodium atoms.",
-    "A single teaspoon of a neutron star would weigh 6 billion tons.",
-    "Space smells like a mix of seared steak, hot metal, and welding fumes.",
-    "The Andromeda Galaxy is heading toward us at 250,000 miles per hour.",
-    "There are billions of 'rogue' planets wandering the dark without a star.",
-    "At light speed, you could circle the Earth 7.5 times in one second.",
-    "There are more stars in the sky than grains of sand on all of Earth.",
-    "Voyager 1 carries a golden record for aliens to find in millions of years.",
-    "Earth’s atmosphere weighs 5.5 quadrillion tons, held down by gravity.",
-    "The universe is expanding faster than the speed of light.",
-    "The static on old TVs is actually radiation left over from the Big Bang."
+    "On Saturn and Jupiter, extreme pressure creates literal diamond rain.",
+    "Space smells like a mix of seared steak and hot metal.",
+    "Venus rotates so slowly that its day is longer than its year.",
+    "Sunsets on Mars appear blue due to the specific way dust scatters light."
 ];
-const notes = ["CLEANING THE LENS", "LOOKING FOR STARS", "CHECKING THE SPACE MAP", "TALKING TO THE ROCKET", "OPENING THE DOORS"];
 
-const kmDisplay = document.getElementById('km');
-const factDisplay = document.getElementById('fact');
-const statusDisplay = document.getElementById('status');
-const screen = document.getElementById('screen');
+const loadingStatuses = [
+    "CLEANING THE LENS", 
+    "LOOKING FOR STARS", 
+    "CHECKING SPACE MAPS", 
+    "TALKING TO ROCKETS"
+];
 
-let ready = false;
-let finished = false; //track when its done
-let progress = 0;
-const goal = Math.floor(Math.random() * 190000000) + 60000000; 
+//HTML id
+const distanceText = document.getElementById('distanceText');
+const factText = document.getElementById('factText');
+const statusText = document.getElementById('statusText');
+const loadingScreen = document.getElementById('loadingScreen');
 
-function start() {
-    //timer runs as long as the page hasntt finished its transition
-    const textTimer = setInterval(() => { 
-        if (!finished) { 
-            factDisplay.innerText = facts[Math.floor(Math.random() * facts.length)]; 
-            statusDisplay.innerText = notes[Math.floor(Math.random() * notes.length)]; 
-        } 
-    }, 4000);
+//starting the distance counter at 0
+let currentDistance = 0;
+//gets randomized target distance number between 60m and 250m KM
+const maxDistance = Math.floor(Math.random() * 190000000) + 60000000; 
 
-    const loadPulse = setInterval(() => {
-        if (!ready) {
-            //loading phase
-            if (progress < goal * 0.9) progress += Math.floor(Math.random() * 3000000) + 1000000;
-        } else {
-            //completion phase once window is loaded
-            progress += 8000000;
-            if (progress >= goal) {
-                progress = goal;
-                finished = true; //stops the text from changing
-                clearInterval(loadPulse);
-                clearInterval(textTimer);
-                finish();
-            }
+//tracks if the pages is ready or not
+let pageIsReady = false;
+let loadingIsDone = false;
+
+//Change the fact and status every 4 seconds
+const factTimer = setInterval(function() {
+    //if the page is not done loading, it'll keep changing the texts for fact and status
+    if (loadingIsDone === false) { 
+        //https://www.w3schools.com/js/js_random.asp
+        //chooses randomly in our facts and status
+        const randomFactIndex = Math.floor(Math.random() * spaceFacts.length);
+        const randomStatusIndex = Math.floor(Math.random() * loadingStatuses.length);
+        
+        //changing the texts
+        factText.innerText = spaceFacts[randomFactIndex]; 
+        statusText.innerText = loadingStatuses[randomStatusIndex]; 
+    } 
+}, 4000);
+
+//changes the distance every 100 miliseconds
+const distanceTimer = setInterval(function() {
+    
+    //checks if the page still loading
+    if (pageIsReady === false) {
+        //lowers the random big numbers when the loading reaches 90%
+        if (currentDistance < maxDistance * 0.9) {
+            //adds random amounts of km in the current distance
+            currentDistance += Math.floor(Math.random() * 3000000) + 1000000;
         }
-        kmDisplay.innerText = `DISTANCE FROM EARTH: ${progress.toLocaleString()} KM`;
-    }, 100);
-}
+    } 
+    //if the browser is fully loaded, it'll speed up the distance
+    else {
+        currentDistance += 8000000;
+        
+        //checks if the distance reached its goal
+        if (currentDistance >= maxDistance) {
+            currentDistance = maxDistance; //will stop the number at the goal
+            loadingIsDone = true; //will turn loadingisdone on
+            
+            //stops the loop
+            clearInterval(distanceTimer);
+            clearInterval(factTimer);
+            
+            //will get to the sign in page
+            runExitTransition();
+        }
+    }
+    
+    //shows the locked in distance numbers
+    distanceText.innerText = "DISTANCE FROM EARTH: " + currentDistance.toLocaleString() + " KM";
+    
+}, 100);
 
-function finish() {
-    kmDisplay.innerText = "TARGET FOUND!";
-    statusDisplay.innerText = "CONNECTION MADE! READY FOR BLAST OFF!";
-    setTimeout(() => {
-        screen.classList.add('hide');
-        setTimeout(() => { window.location.href = "../signin/index.html"; }, 1500);
+//hides the loading screen and load into the sign in page
+function runExitTransition() {
+    distanceText.innerText = "TARGET LOCKED";
+    statusText.innerText = "PLEASE SIGN IN TO PROCEED...";
+    
+    //waits for 1.2 seconds, then will have the fade out effect
+    setTimeout(function() {
+        loadingScreen.classList.add('hide');
+        
+        //waits for 1.5 seconds for the fade effect to finsih then go into signin folder
+        setTimeout(function() { 
+            window.location.href = "signin/index.html"; 
+        }, 1500);
+        
     }, 1200);
 }
 
-window.addEventListener('load', () => { 
-    setTimeout(() => { ready = true; }, 3000); 
+//will check if the websitei is loaded
+window.addEventListener('load', function() { 
+    //wait 3 seconds after the website loads
+    setTimeout(function() { 
+        pageIsReady = true; 
+    }, 3000); 
 });
-
-start();

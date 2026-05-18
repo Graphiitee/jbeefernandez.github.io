@@ -1,134 +1,236 @@
-/*z-index - layers in the website*/
-:root {
-    --main: #ffffff;
-    --glass: rgba(255, 255, 255, 0.01);
-    --edge: rgba(255, 255, 255, 0.08);
-}
-
-body, html {
+/*For the whole page*/
+html {
     margin: 0;
     padding: 0;
+    height: 100%;
+    background-color: #000000;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/*fullscreen video*/
+#backgroundVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000;
-    color: var(--main);
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    user-select: none;
-    /*used to disable double click on texts and video*/
-    -webkit-user-select: none;
-}
-
-#video {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -2;
     object-fit: cover;
-    pointer-events: none;
+    z-index: -1;
 }
 
-.card {
-    position: absolute;
-    width: 350px;
-    background: var(--glass);
-    backdrop-filter: blur(20px) saturate(180%); 
-    border: 1px solid var(--edge);
-    border-radius: 25px;
-    padding-bottom: 30px;
+/*the sign in box container*/
+.login-card {
+    background: rgba(20, 20, 20, 0.75); 
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px); 
+    padding: 50px 40px; 
+    border-radius: 24px; 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 85%; 
+    max-width: 360px; 
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8); 
+    position: relative;
     z-index: 10;
 }
 
-.grab { 
-    padding: 15px; 
-    text-align: center; 
-    font-family: 'Jost', sans-serif; 
-    font-size: 0.6rem; 
-    letter-spacing: 4px; 
-    opacity: 0.4; 
-    cursor: grab; 
+/*sign in title*/
+.login-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-top: 0; 
+    margin-bottom: 8px;
 }
 
-.body { 
-    padding: 0 40px; 
-    text-align: center; 
+/*subtitle*/
+.login-subtitle {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-bottom: 40px;
 }
 
-.header { 
-    font-family: 'Jost', sans-serif; 
-    font-size: 1.8rem; 
-    letter-spacing: 5px; 
-    margin: 10px 0; 
-    font-weight: 300; 
+.login-form {
+    display: flex;
+    flex-direction: column; 
+    gap: 22px;
 }
 
-.note { 
-    font-size: 0.75rem; 
-    opacity: 0.5; 
-    margin-bottom: 30px; 
+.field-group {
+    text-align: left;
 }
 
-.field { 
-    width: 100%; 
-    background: rgba(255, 255, 255, 0.05); 
-    border: 1px solid var(--edge); 
-    border-radius: 10px; 
-    padding: 12px; 
-    margin-bottom: 15px; 
-    color: white; 
-    box-sizing: border-box; 
-    outline: none; 
-    user-select: text;
+.field-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase; 
+    letter-spacing: 1.5px;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 8px;
 }
 
-.login { 
-    width: 100%; 
-    background: var(--main); 
-    color: black; 
-    border: none; 
-    padding: 12px; 
-    border-radius: 10px; 
-    font-weight: 600; 
+/*input boxes*/
+.field-input {
+    width: 100%;
+    padding: 14px; 
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/*when clicking inside the inputs*/
+.field-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+/*sign in button link*/
+.login-button {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff; 
+    color: #000000;
+    border: none;
+    padding: 14px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 12px;
     cursor: pointer; 
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    text-decoration: none;
+    display: block;
 }
 
-.google { 
-    width: 100%; 
-    background: rgba(255, 255, 255, 0.05); 
-    color: white; 
-    border: 1px solid var(--edge); 
-    padding: 12px; 
-    border-radius: 10px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 10px; 
-    font-size: 0.8rem; 
-    margin-top: 20px; 
-    cursor: pointer; 
+/*button hover animation*/
+.login-button:hover {
+    background-color: #e3e3e3; 
+    transform: translateY(-1px);
 }
 
-.google img { width: 15px; }
-
-.line { 
-    margin: 20px 0; 
-    font-size: 0.7rem; 
-    opacity: 0.3; 
+/*OR text*/
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
 }
 
-.guest { 
-    display: block; 
-    margin-top: 20px; 
-    font-size: 0.7rem; 
-    color: var(--main); 
-    text-decoration: underline; 
-    opacity: 0.5; 
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); 
+}
+
+.divider span {
+    padding: 0 15px;
+    font-size: 0.75rem;
+    opacity: 0.4;
+    letter-spacing: 1px;
+}
+
+/*continue as guest / continue with google buttons*/
+.alt-button {
+    font-family: 'Inter', sans-serif;
+    background-color: rgba(255, 255, 255, 0.06); 
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    padding: 12px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/*animation for secondary buttons*/
+.alt-button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.drifting-astro {
+    position: absolute;
+    width: 60px;
+    height: auto;
+    opacity: 0.7;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/*Astronauts*/
+.astro-one {
+    top: 15%;
+    left: 10%;
+    animation: slowDriftOne 25s infinite linear;
+}
+
+.astro-two {
+    top: 70%;
+    left: 15%;
+    width: 50px;
+    opacity: 0.5;
+    animation: slowDriftTwo 30s infinite linear;
+}
+
+.astro-three {
+    top: 20%;
+    right: 12%;
+    width: 70px;
+    animation: slowDriftThree 28s infinite linear;
+}
+
+.astro-four {
+    top: 75%;
+    right: 18%;
+    width: 45px;
+    opacity: 0.6;
+    animation: slowDriftOne 35s infinite linear;
+}
+
+.astro-five {
+    top: 45%;
+    left: 80%;
+    width: 55px;
+    animation: slowDriftTwo 22s infinite linear;
+}
+
+/*cute astronauts animations*/
+@keyframes slowDriftOne {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(15px, -25px) rotate(45deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes slowDriftTwo {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-20px, 20px) rotate(-60deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes slowDriftThree {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(25px, 15px) rotate(30deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
 }

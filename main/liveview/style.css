@@ -1,0 +1,300 @@
+/*For the whole page*/
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #030305;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden; /*disables scrolling*/
+}
+
+/*navigation bar*/
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    z-index: 100;
+    /*fades the navbar into transparent*/
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+}
+
+/*holds the logo*/
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/*logo image*/
+.logo-img {
+    height: 35px;
+    width: auto;
+}
+
+/*navigation links container*/
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding-right: 50px;
+}
+
+/*navigation texts*/
+.nav-item {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 6px;
+}
+
+/*underline hover effect*/
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+/*expands the underline on hover*/
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/*navigation button*/
+.navbar-btn {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+/*removes the underline effect*/
+.navbar-btn::after {
+    display: none;
+}
+
+/*button hover effect*/
+.navbar-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/*main screen layout*/
+.terminal-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 90px);
+    margin-top: 90px;
+}
+
+/*solar system section*/
+.map-area {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/*right side information panel*/
+.sidebar-area {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 5%;
+    box-sizing: border-box;
+}
+
+/*solar system container*/
+.solar-system {
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+
+/*sun in the center*/
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #ffd700;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/*sun hover animation*/
+.sun:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.7);
+}
+
+/*planet orbit lines*/
+.orbit-track {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /*prevents the orbit lines from blocking clicks*/
+}
+
+/*orbit sizes*/
+.mercury-track { width: 80px;  height: 80px; }
+.venus-track   { width: 140px; height: 140px; }
+.earth-track   { width: 200px; height: 200px; }
+.mars-track    { width: 260px; height: 260px; }
+.jupiter-track { width: 340px; height: 340px; }
+.saturn-track  { width: 420px; height: 420px; }
+.uranus-track  { width: 500px; height: 500px; }
+.neptune-track { width: 580px; height: 580px; }
+
+/*fixed orbit containers*/
+.orbit-fixed {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    pointer-events: none; /*prevents invisible divs from blocking clicks*/
+}
+
+/*planet positions*/
+.mercury-fixed { width: 80px;  height: 80px;  transform: translate(-50%, -50%) rotate(115deg); }
+.venus-fixed   { width: 140px; height: 140px; transform: translate(-50%, -50%) rotate(210deg); }
+.earth-fixed   { width: 200px; height: 200px; transform: translate(-50%, -50%) rotate(238deg); }
+.mars-fixed    { width: 260px; height: 260px; transform: translate(-50%, -50%) rotate(45deg); }
+.jupiter-fixed { width: 340px; height: 340px; transform: translate(-50%, -50%) rotate(85deg); }
+.saturn-fixed  { width: 420px; height: 420px; transform: translate(-50%, -50%) rotate(320deg); }
+.uranus-fixed  { width: 500px; height: 500px; transform: translate(-50%, -50%) rotate(155deg); }
+.neptune-fixed { width: 580px; height: 580px; transform: translate(-50%, -50%) rotate(295deg); }
+
+/*clickable planets*/
+.planet-node {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto; /*re-enables clicking on the planets*/
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/*planet hover animation*/
+.planet-node:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+/*planet colors and sizes*/
+.mercury-node { width: 8px;   height: 8px;   background-color: #a1a1a1; box-shadow: 0 0 8px #a1a1a1; }
+.venus-node   { width: 12px;  height: 12px;  background-color: #e3bb76; box-shadow: 0 0 10px #e3bb76; }
+.earth-node   { width: 14px;  height: 14px;  background-color: #4b9cd3; box-shadow: 0 0 10px #4b9cd3; }
+.mars-node    { width: 11px;  height: 11px;  background-color: #ff6b6b; box-shadow: 0 0 10px #ff6b6b; }
+.jupiter-node { width: 24px;  height: 24px;  background-color: #dfae79; box-shadow: 0 0 12px #dfae79; }
+.saturn-node  { width: 20px;  height: 20px;  background-color: #e2bf7d; box-shadow: 0 0 12px #e2bf7d; }
+.uranus-node  { width: 16px;  height: 16px;  background-color: #b4e2e6; box-shadow: 0 0 10px #b4e2e6; }
+.neptune-node { width: 15px;  height: 15px;  background-color: #4b70dd; box-shadow: 0 0 10px #4b70dd; }
+
+/*information card*/
+.telemetry-card {
+    width: 100%;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 40px;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+/*system status text*/
+.system-status {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #00ffcc;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/*planet title*/
+#telemetry-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 15px 0;
+}
+
+/*planet description*/
+.telemetry-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 35px;
+}
+
+/*data section*/
+.data-rows {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 25px;
+}
+
+/*each information row*/
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+/*left side labels*/
+.data-label {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/*right side values*/
+.data-value {
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/*date text at the bottom right*/
+.date-stamp {
+    position: absolute;
+    bottom: 25px;
+    right: 35px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    z-index: 10;
+}

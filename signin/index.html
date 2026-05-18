@@ -4,37 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BigPlanetarium | Sign In</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500&family=Inter:wght@300;400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <video autoplay muted loop playsinline id="video">
-        <source src="video/startbg.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="auto" id="backgroundVideo">
+        <source src="assets/signinbg.mp4" type="video/mp4">
     </video>
-
-    <div id="box" class="card">
-        <div id="top" class="grab">!! USER DATA !!</div>
-        <div class="body">
-            <h1 class="header">SIGN IN</h1>
-            <p class="note">Please enter your details to keep the data you have.</p>
-            
-            <input type="text" placeholder="USERNAME" class="field">
-            <input type="password" placeholder="PASSWORD" class="field">
-            
-            <button class="login" onclick="window.location.href='../home/index.html'">SIGN IN</button>
-            
-            <div class="line">OR</div>
-            
-            <button class="google" onclick="window.location.href='../home/index.html'">
-                <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="G">
-                CONTINUE WITH GOOGLE
-            </button>
-            
-            <a href="../home/index.html" class="guest">CONTINUE AS GUEST</a>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    <img src="assets/astros/astro1.png" alt="Astronaut" class="drifting-astro astro-one">
+    <img src="assets/astros/astro2.png" alt="Astronaut" class="drifting-astro astro-two">
+    <img src="assets/astros/astro3.png" alt="Astronaut" class="drifting-astro astro-three">
+    <img src="assets/astros/astro4.png" alt="Astronaut" class="drifting-astro astro-four">
+    <img src="assets/astros/astro5.png" alt="Astronaut" class="drifting-astro astro-five">
+    <main class="login-card">
+        <h1 class="login-title">Sign In</h1>
+        <p class="login-subtitle">Please sign in to continue</p>
+        <form class="login-form">
+            <div class="field-group">
+                <label for="usernameField" class="field-label">Username</label>
+                <input type="text" id="usernameField" class="field-input" placeholder="Enter username" required>
+            </div>
+            <div class="field-group">
+                <label for="passwordField" class="field-label">Password</label>
+                <input type="password" id="passwordField" class="field-input" placeholder="Enter password" required>
+            </div>
+            <a href="../main/home/index.html" class="login-button">Sign in</a>
+            <div class="divider">
+                <span>OR</span>
+            </div>
+            <a href="../main/home/index.html" class="alt-button google-btn">
+                Continue with Google
+            </a>
+            <a href="../main/home/index.html" class="alt-button guest-btn">
+                Continue as Guest
+            </a>
+        </form>
+    </main>
 </body>
 </html>
